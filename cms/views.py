@@ -17,7 +17,6 @@ def index(request):
 @api_view(['GET'])
 def getAll(request):
 	post = Posts.objects.all()
-	count = Likes.objects.all().values("post_id").annotate(total=Count("post_id"))
 	serializer = PostSerializer(post, many=True)
 	return Response(serializer.data)
 
